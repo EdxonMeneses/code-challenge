@@ -1,0 +1,40 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkYTkwY2Y1Yi0zMTljLTRmMTYtOGRkYS01N2QwOTMxZGMzODciLCJzdWIiOiJzdHJpbmciLCJlbWFpbCI6InN0cmluZyIsInVzZXJJZCI6IjNmYTg1ZjY0LTU3MTctNDU2Mi1iM2ZjLTJjOTYzZjY2YWZhNiIsInN0cmluZyI6InN0cmluZyIsIm5iZiI6MTY5Njk0NzExNywiZXhwIjoxNjk3MDMzNTE3LCJpYXQiOjE2OTY5NDcxMTcsImlzcyI6Imh0dHBzOi8vdGVzdC5jb20iLCJhdWQiOiJodHRwczovL3Rlc3QyLmNvbSJ9.RUQKVX37cGi9hvCNbp3NghP-wQTQMDPWRDUBHyeNbhc
+@url = https://localhost:7022/api
+##Get JWT token
+
+POST https://localhost:7022/api/auth HTTP/1.1
+content-type: application/json
+
+{
+  "email": "string",
+  "userId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "customClaims": [
+    {
+      "key": "string",
+      "value": "string"
+    }
+  ]
+}
+
+###
+## Create a new card with initial balance.
+POST {{url}}/card?amount=2000 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+POST {{url}}/card/pay HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "cardNumber": 775671050586895,
+  "amount": 100
+}
+
+###
+
+GET {{url}}/card?cardNumber=165267126316487 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
